@@ -1,33 +1,50 @@
+
 #include "Date.h"
 #include <iostream>
 using namespace std;
+
+bool validateInput(int& value) {
+    if (!(cin >> value)) {
+        cin.clear();
+        cin.ignore(10000, '\n');
+        return false;
+    }
+    return true;
+}
+
 int main() {
-    Date date1;
-    cout << "Test default constructor: " << date1.printNumeric() << "\n";
+    int month, day, year;
+    
+    do {
+        cout << "Enter month (1-12): ";
+        if (!validateInput(month) || month < 1 || month > 12) {
+            cout << "Invalid month. Please enter a number between 1 and 12.\n";
+            continue;
+        }
 
-    Date date2(2, 28, 2009);
-    cout << "Test constructor with valid date: " << date2.printNumeric() << "\n";
+        cout << "Enter day: ";
+        if (!validateInput(day) || day < 1) {
+            cout << "Invalid day. Please enter a positive number.\n";
+            continue;
+        }
 
-    Date date3(45, 2, 2009);
-    cout << "Test constructor with invalid month (45, 2, 2009): " << date3.printNumeric() << "\n";
+        cout << "Enter year: ";
+        if (!validateInput(year) || year < 1) {
+            cout << "Invalid year. Please enter a positive number.\n";
+            continue;
+        }
 
-    Date date4(2, 29, 2009);
-    cout << "Test constructor with invalid day (2/29/2009): " << date4.printNumeric() << "\n";
-
-    date1.setDate(13, 15, 2021);
-    cout << "Test setDate with bad month (13): " << date1.printNumeric() << "\n";
-
-    date1.setDate(4, 31, 2009);
-    cout << "Test setDate with bad day (4, 31, 2009): " << date1.printNumeric() << "\n";
-
-    Date date5(2, 29, 2008);
-    cout << "Test for leap year with good date (2/29/2008): " << date5.printNumeric() << "\n";
-
-    cout << "Test the print formats:\n";
-    cout << date5.printLong() << "\n";
-    cout << date5.printDayFirst() << "\n";
-
-  
+        Date userDate(month, day, year);
+        if (userDate.getMonth() == month && userDate.getDay() == day && userDate.getYear() == year) {
+            cout << "\nValid date entered!\n";
+            cout << "Numeric format: " << userDate.printNumeric() << "\n";
+            cout << "Long format: " << userDate.printLong() << "\n";
+            cout << "Day-first format: " << userDate.printDayFirst() << "\n";
+            break;
+        } else {
+            cout << "Invalid date. Please try again.\n\n";
+        }
+    } while (true);
 
     return 0;
 }
