@@ -9,6 +9,9 @@ private:
     int month;
     int day;
     int year;
+    bool isValidMonth(int m) const;
+    bool isValidDay(int m, int d, int y) const;
+    bool isValidYear(int y) const;
     bool isValidDate(int m, int d, int y);
     bool isLeapYear(int year) const;
 

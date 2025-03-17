@@ -3,10 +3,21 @@
 #include <string>
 using namespace std;
 
+bool Date::isValidMonth(int m) const {
+    return m >= 1 && m <= 12;
+}
+
+bool Date::isValidDay(int m, int d, int y) const {
+    if (d < 1) return false;
+    return d <= lastDay(m, y);
+}
+
+bool Date::isValidYear(int y) const {
+    return y > 0;
+}
+
 bool Date::isValidDate(int m, int d, int y) {
-    if (m < 1 || m > 12 || d < 1 || y < 1) return false;
-    int maxDay = lastDay(m, y);
-    return d <= maxDay;
+    return isValidMonth(m) && isValidDay(m, d, y) && isValidYear(y);
 }
 
 Date::Date(int m, int d, int y) {
