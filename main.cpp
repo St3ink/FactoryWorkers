@@ -23,7 +23,7 @@ int main() {
         }
 
         cout << "Enter day: ";
-        if (!validateInput(day) || day < 1) {
+        if (!validateInput(day) || day < 1 || day > lastDay(month, year)) {
             cout << "Invalid day. Please enter a positive number.\n";
             continue;
         }
