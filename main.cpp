@@ -17,26 +17,20 @@ int main() {
     
     do {
         cout << "Enter month (1-12): ";
-        Date validator;
-        if (!validateInput(month) || !validator.isValidMonth(month)) {
+        if (!validateInput(month) || month < 1 || month > 12) {
             cout << "Invalid month. Please enter a number between 1 and 12.\n";
             continue;
         }
 
         cout << "Enter day: ";
-        if (!validateInput(day)) {
-            cout << "Invalid day input.\n";
+        if (!validateInput(day) || day < 1) {
+            cout << "Invalid day. Please enter a positive number.\n";
             continue;
         }
 
         cout << "Enter year: ";
-        if (!validateInput(year) || !validator.isValidYear(year)) {
+        if (!validateInput(year) || year < 1) {
             cout << "Invalid year. Please enter a positive number.\n";
-            continue;
-        }
-
-        if (!validator.isValidDay(month, day, year)) {
-            cout << "Invalid day for the given month and year.\n";
             continue;
         }
 
