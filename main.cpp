@@ -1,50 +1,29 @@
-
-#include "Date.h"
 #include <iostream>
+#include "Employee.h"
+#include "ProductionWorker.h"
+#include "ShiftSupervisor.h"
+#include "TeamLeader.h"
 using namespace std;
 
-bool validateInput(int& value) {
-    if (!(cin >> value)) {
-        cin.clear();
-        cin.ignore(10000, '\n');
-        return false;
-    }
-    return true;
-}
-
 int main() {
-    int month, day, year;
-    
-    do {
-        cout << "Enter month (1-12): ";
-        if (!validateInput(month) || month < 1 || month > 12) {
-            cout << "Invalid month. Please enter a number between 1 and 12.\n";
-            continue;
-        }
+    // Create and display two ProductionWorker objects
+    ProductionWorker worker1("Andrew", "1001", "2020-03-15", 1, 20.5);
+    ProductionWorker worker2("Jackie", "1002", "2021-07-22", 2, 22.75);
 
-        cout << "Enter day: ";
-        if (!validateInput(day) || day < 1) {
-            cout << "Invalid day. Please enter a positive number.\n";
-            continue;
-        }
+    cout << "Production Worker 1:\n";
+    worker1.printProductionWorker();
+    cout << "\nProduction Worker 2:\n";
+    worker2.printProductionWorker();
 
-        cout << "Enter year: ";
-        if (!validateInput(year) || year < 1) {
-            cout << "Invalid year. Please enter a positive number.\n";
-            continue;
-        }
+    // Create and display one ShiftSupervisor object
+    ShiftSupervisor supervisor("Penny", "2001", "2019-01-10", 60000, 5000);
+    cout << "\nShift Supervisor:\n";
+    supervisor.printShiftSupervisor();
 
-        Date userDate(month, day, year);
-        if (userDate.getMonth() == month && userDate.getDay() == day && userDate.getYear() == year) {
-            cout << "\nValid date entered!\n";
-            cout << "Numeric format: " << userDate.printNumeric() << "\n";
-            cout << "Long format: " << userDate.printLong() << "\n";
-            cout << "Day-first format: " << userDate.printDayFirst() << "\n";
-            break;
-        } else {
-            cout << "Invalid date. Please try again.\n\n";
-        }
-    } while (true);
+    // Create and display one TeamLeader object
+    TeamLeader leader("Anna", "3001", "2024-11-05", 1, 25.0, 1000, 40, 35);
+    cout << "\nTeam Leader:\n";
+    leader.printTeamLeader();
 
     return 0;
 }

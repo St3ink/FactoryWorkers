@@ -1,33 +1,29 @@
-#include "Date.h"
 #include <iostream>
+#include "Employee.h"
+#include "ProductionWorker.h"
+#include "ShiftSupervisor.h"
+#include "TeamLeader.h"
 using namespace std;
+
 int main() {
-    Date date1;
-    cout << "Test default constructor: " << date1.printNumeric() << "\n";
+    // Create and display two ProductionWorker objects
+    ProductionWorker worker1("Andrew", "1001", "2020-03-15", 1, 20.5);
+    ProductionWorker worker2("Jackie", "1002", "2021-07-22", 2, 22.75);
 
-    Date date2(2, 28, 2009);
-    cout << "Test constructor with valid date: " << date2.printNumeric() << "\n";
+    cout << "Production Worker 1:\n";
+    worker1.printProductionWorker();
+    cout << "\nProduction Worker 2:\n";
+    worker2.printProductionWorker();
 
-    Date date3(45, 2, 2009);
-    cout << "Test constructor with invalid month (45, 2, 2009): " << date3.printNumeric() << "\n";
+    // Create and display one ShiftSupervisor object
+    ShiftSupervisor supervisor("Penny", "2001", "2019-01-10", 60000, 5000);
+    cout << "\nShift Supervisor:\n";
+    supervisor.printShiftSupervisor();
 
-    Date date4(2, 29, 2009);
-    cout << "Test constructor with invalid day (2/29/2009): " << date4.printNumeric() << "\n";
-
-    date1.setDate(13, 15, 2021);
-    cout << "Test setDate with bad month (13): " << date1.printNumeric() << "\n";
-
-    date1.setDate(4, 31, 2009);
-    cout << "Test setDate with bad day (4, 31, 2009): " << date1.printNumeric() << "\n";
-
-    Date date5(2, 29, 2008);
-    cout << "Test for leap year with good date (2/29/2008): " << date5.printNumeric() << "\n";
-
-    cout << "Test the print formats:\n";
-    cout << date5.printLong() << "\n";
-    cout << date5.printDayFirst() << "\n";
-
-  
+    // Create and display one TeamLeader object
+    TeamLeader leader("Anna", "3001", "2024-11-05", 1, 25.0, 1000, 40, 35);
+    cout << "\nTeam Leader:\n";
+    leader.printTeamLeader();
 
     return 0;
 }
